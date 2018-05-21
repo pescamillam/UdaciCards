@@ -2,17 +2,17 @@ import React, {Component} from "react";
 import {View} from "react-native";
 import {connect} from 'react-redux';
 import {Constants} from 'expo';
-import AppStatusBar from './AppStatusBar';
-import DeckList from './DeckList';
+import Navigator from "./Navigator";
+import AppStatusBar from "./AppStatusBar";
 
 class DeckApp extends Component {
   render() {
     return (
-      <View>
+      <View style={{flex: 1}}>
         <View style={{height: Constants.statusBarHeight}}>
           <AppStatusBar/>
         </View>
-        <DeckList/>
+        <Navigator/>
       </View>
     )
   }

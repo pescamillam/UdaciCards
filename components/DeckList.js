@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {connect} from "react-redux";
 
 class DeckList extends Component {
   render() {
     const {decks} = this.props.decks;
+    const {navigation} = this.props;
     return (
-      <View>
+      <View style={{flex: 1}}>
         { decks ?
             decks.map((deck) =>
-              <Text key={deck.title}>{deck.title}</Text>
+              <TouchableOpacity key={deck.title} onPress={() =>
+                  navigation.navigate('DeckDetail', {title: deck.title})}>
+                <Text style={{height: 100}}>{deck.title}</Text>
+              </TouchableOpacity>
             )
             :
             <Text>No decks available</Text>
