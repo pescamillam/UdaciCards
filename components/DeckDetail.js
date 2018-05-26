@@ -1,6 +1,6 @@
 import React, {Component} from  'react'
 import {Text, TouchableOpacity, View} from "react-native";
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
 
 class DeckDetail extends Component {
   render() {
