@@ -1,3 +1,5 @@
+import {CREATE_DECK} from "../actions";
+
 const defaultState = {
   "decks": [
     {
@@ -26,7 +28,18 @@ const defaultState = {
 };
 
 export function decks(state=defaultState, action) {
+  debugger;
   switch (action.type) {
+    case CREATE_DECK:
+      return {
+        ...state,
+        decks: state.decks.concat(
+          {
+            title: action.title,
+            questions: []
+          }
+        )
+      };
     default:
       return state;
   }

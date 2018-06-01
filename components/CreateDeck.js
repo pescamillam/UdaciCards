@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Text, TextInput, TouchableOpacity, View} from "react-native";
 import {connect} from 'react-redux';
+import {createDeckAction} from "../actions";
 
 class CreateDeck extends Component {
 
@@ -13,7 +14,10 @@ class CreateDeck extends Component {
   };
 
   create = (title) => {
-    alert(' title: ' + title)
+    const {navigation} = this.props;
+    this.props.createDeck(title);
+    alert(' Deck ' + title + ' created');
+    navigation.navigate('Navigator')
   };
 
   render() {
@@ -32,4 +36,18 @@ class CreateDeck extends Component {
   }
 }
 
-export default connect()(CreateDeck);
+function mapStateToProps ({}) {
+  return {
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    createDeck: (data) => dispatch(createDeckAction(data))
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CreateDeck);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {connect} from "react-redux";
 
 class DeckList extends Component {
@@ -10,9 +10,10 @@ class DeckList extends Component {
       <View style={{flex: 1}}>
         { decks ?
             decks.map((deck) =>
-              <TouchableOpacity key={deck.title} onPress={() =>
-                  navigation.navigate('DeckDetail', {title: deck.title})}>
-                <Text style={{height: 100}}>{deck.title}</Text>
+              <TouchableOpacity style={styles.deck} key={deck.title} onPress={() =>
+                  navigation.navigate('DeckDetail', {deck: deck})}>
+                <Text style={styles.deckTitleLabel}>{deck.title}</Text>
+                <Text style={styles.deckCardsLabel}>{deck.questions.length} cards</Text>
               </TouchableOpacity>
             )
             :
@@ -22,6 +23,21 @@ class DeckList extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  deck: {
+    borderWidth: 0.5,
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  deckTitleLabel: {
+    fontSize: 20
+  },
+  deckCardsLabel: {
+    color: 'grey'
+  }
+});
 
 function mapStateToProps({decks}) {
   return {
