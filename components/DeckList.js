@@ -3,6 +3,11 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {connect} from "react-redux";
 
 class DeckList extends Component {
+
+  static navigationOptions = {
+    title: 'Deck List'
+  };
+
   render() {
     const {decks} = this.props.decks;
     const {navigation} = this.props;

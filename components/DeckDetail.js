@@ -3,6 +3,15 @@ import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {connect} from 'react-redux';
 
 class DeckDetail extends Component {
+
+  static navigationOptions = ({ navigation, navigationOptions }) => {
+    const { params } = navigation.state;
+
+    return {
+      title: params ? params.deck.title : 'Detail'
+    };
+  };
+
   render() {
     const {navigation} = this.props;
     return (
@@ -10,7 +19,8 @@ class DeckDetail extends Component {
         <Text style={styles.titleLabel}>{navigation.state.params.deck.title}</Text>
         <Text>{navigation.state.params.deck.questions.length} cards</Text>
         <View style={styles.addButtonContainer}>
-          <TouchableOpacity style={styles.addButton}>
+          <TouchableOpacity style={styles.addButton} onPress={() =>
+            navigation.navigate('AddCard', {deck: navigation.state.params.deck})}>
             <Text style={styles.addText}>Add Card</Text>
           </TouchableOpacity>
         </View>
