@@ -1,4 +1,4 @@
-import {CREATE_DECK} from "../actions";
+import {ADD_CARD, CREATE_DECK} from "../actions";
 
 const defaultState = {
   "decks": [
@@ -28,7 +28,6 @@ const defaultState = {
 };
 
 export function decks(state=defaultState, action) {
-  debugger;
   switch (action.type) {
     case CREATE_DECK:
       return {
@@ -37,6 +36,21 @@ export function decks(state=defaultState, action) {
           {
             title: action.title,
             questions: []
+          }
+        )
+      };
+    case ADD_CARD:
+      return {
+        ...state,
+        decks: state.decks.map(
+          (deck) => {
+            if (deck.title === action.data.deck.title) {
+              return {
+                ...deck,
+                questions: deck.questions.concat(action.data.question)
+              }
+            }
+            return deck;
           }
         )
       };

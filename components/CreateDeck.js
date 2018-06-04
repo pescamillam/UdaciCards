@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, TextInput, TouchableOpacity, View} from "react-native";
+import {StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 import {connect} from 'react-redux';
 import {createDeckAction} from "../actions";
 
@@ -22,9 +22,10 @@ class CreateDeck extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>What is the title of your new deck?</Text>
-        <TextInput onChangeText={this.handleTitle}>Deck Title</TextInput>
+        <TextInput onChangeText={this.handleTitle} style={styles.textInput}
+          placeholder={'Deck Title'}/>
         <TouchableOpacity
           onPress = {
             () => this.create(this.state.title)
@@ -35,6 +36,16 @@ class CreateDeck extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  textInput: {
+    width: 200
+  }
+});
 
 function mapStateToProps ({}) {
   return {
