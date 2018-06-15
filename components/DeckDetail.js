@@ -1,6 +1,7 @@
-import React, {Component} from  'react'
+import React, {Component} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {connect} from 'react-redux';
+import {addCardAction} from "../actions";
 
 class DeckDetail extends Component {
 
@@ -13,25 +14,24 @@ class DeckDetail extends Component {
   };
 
   render() {
-    const {navigation} = this.props;
+    const {navigation, decks} = this.props;
+    const deck = decks.decks.filter((deck) => deck.title === navigation.state.params.deck.title)[0];
     return (
       <View style={styles.container}>
-        <Text style={styles.titleLabel}>{navigation.state.params.deck.title}</Text>
-        <Text>{navigation.state.params.deck.questions.length} cards</Text>
+        <Text style={styles.titleLabel}>{deck.title}</Text>
+        <Text>{deck.questions.length} cards</Text>
         <View style={styles.addButtonContainer}>
           <TouchableOpacity style={styles.addButton} onPress={() =>
-            navigation.navigate('AddCard', {deck: navigation.state.params.deck})}>
+            navigation.navigate('AddCard', {deck})}>
             <Text style={styles.addText}>Add Card</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.startButtonContainer}>
-          <TouchableOpacity style={styles.startButton}>
+          <TouchableOpacity style={styles.startButton} onPress={() =>
+            navigation.navigate('QuestionCard', {deck, currentQuestion: 0})}>
             <Text>Start Quiz</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate('DeckList')}>
-          <Text>DeckDetail {navigation.state.params.title}</Text>
-        </TouchableOpacity>
       </View>
     );
   }
@@ -81,4 +81,15 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect()(DeckDetail);
+function mapStateToProps ({decks}) {
+  return {
+    decks
+  }
+}
+
+function mapDispatchToProps () {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DeckDetail);
