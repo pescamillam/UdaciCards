@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {connect} from 'react-redux';
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers';
 
 class QuestionCard extends Component {
 
@@ -24,6 +25,8 @@ class QuestionCard extends Component {
           deck, currentQuestion: navigation.state.params.currentQuestion + 1,
           rightAnswers: navigation.state.params.rightAnswers + 1})
     } else {
+      clearLocalNotification()
+          .then(setLocalNotification)
       navigation.navigate('Result', {
           deck, rightAnswers: navigation.state.params.rightAnswers + 1
       })
@@ -39,6 +42,8 @@ class QuestionCard extends Component {
           deck, currentQuestion: navigation.state.params.currentQuestion + 1,
           rightAnswers: navigation.state.params.rightAnswers});
     } else {
+      clearLocalNotification()
+          .then(setLocalNotification)
       navigation.navigate('Result', {
           deck, rightAnswers: navigation.state.params.rightAnswers
       })

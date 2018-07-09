@@ -7,6 +7,7 @@ import { createLogger } from 'redux-logger';
 import reducer from './reducer';
 import DeckApp from './components/DeckApp';
 import storage from 'redux-persist/lib/storage';
+import { setLocalNotification } from './utils/helpers';
 
 const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__ });
 
@@ -27,6 +28,9 @@ const persistedReducer = persistReducer(persistConfig, reducer);
 const store = configureStore({});
 
 export default class App extends Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
   render() {
     return (
       <Provider store={store}>

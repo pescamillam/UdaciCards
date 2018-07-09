@@ -5,3 +5,4 @@ export function submitEntry({ entry, key }) {
     [key]: entry
   }))
 }
+
