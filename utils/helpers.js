@@ -3,7 +3,7 @@ import { Notifications, Permissions } from 'expo';
 
 const NOTIFICATION_KEY = 'UdaciCards:notifications';
 
-export function clearLocalNotifications() {
+export function clearLocalNotification() {
   return AsyncStorage.removeItem(NOTIFICATION_KEY)
     .then(Notifications.cancelAllScheduledNotificationsAsync);
 }
@@ -27,7 +27,7 @@ export function setLocalNotification() {
     .then((data) => {
       if (data === null) {
         Permissions.askAsync(Permissions.NOTIFICATIONS)
-          .then(({ status }) =>
+          .then(({ status }) => {
             if (status === 'granted') {
               Notifications.cancelAllScheduledNotificationsAsync()
 
@@ -46,7 +46,7 @@ export function setLocalNotification() {
 
               AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));
             }
-          )
+          })
       }
     });
 }

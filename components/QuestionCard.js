@@ -18,6 +18,9 @@ class QuestionCard extends Component {
   };
 
   markAsRight = (data) => {
+    this.setState(state => ({
+        isQuestion: true
+      }));
     const {navigation, decks} = this.props;
     const deck = decks.decks.filter((deck) => deck.title === navigation.state.params.deck.title)[0];
     if (navigation.state.params.currentQuestion + 1 < deck.questions.length) {
@@ -35,6 +38,9 @@ class QuestionCard extends Component {
   }
 
   markAsWrong = (data) => {
+    this.setState(state => ({
+        isQuestion: true
+      }));
     const {navigation, decks} = this.props;
     const deck = decks.decks.filter((deck) => deck.title === navigation.state.params.deck.title)[0];
     if (navigation.state.params.currentQuestion + 1 < deck.questions.length) {
