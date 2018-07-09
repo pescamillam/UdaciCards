@@ -23,6 +23,7 @@ class AddCard extends Component {
   };
 
   addCard = () => {
+    var {navigation} = this.props;
     this.props.addCard({
       deck: {
         title: this.props.navigation.state.params.deck.title
@@ -32,6 +33,7 @@ class AddCard extends Component {
         answer: this.state.answer
       }
     });
+    navigation.navigate('DeckDetail', {deck: this.props.navigation.state.params.deck});
   };
 
   render() {

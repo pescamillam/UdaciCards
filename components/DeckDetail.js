@@ -28,7 +28,7 @@ class DeckDetail extends Component {
         </View>
         <View style={styles.startButtonContainer}>
           <TouchableOpacity style={styles.startButton} onPress={() =>
-            navigation.navigate('QuestionCard', {deck, currentQuestion: 0})}>
+            navigation.navigate('QuestionCard', {deck, currentQuestion: 0, rightAnswers: 0})}>
             <Text>Start Quiz</Text>
           </TouchableOpacity>
         </View>

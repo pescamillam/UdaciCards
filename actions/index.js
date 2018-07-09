@@ -9,6 +9,6 @@ export function createDeckAction(title) {
 
 export function addCardAction(data) {
   return function (dispatch) {
-    dispatch({type: ADD_CARD, data})
+    dispatch({type: ADD_CARD, data});
   }
 }

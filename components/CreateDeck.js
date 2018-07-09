@@ -17,7 +17,7 @@ class CreateDeck extends Component {
     const {navigation} = this.props;
     this.props.createDeck(title);
     alert(' Deck ' + title + ' created');
-    navigation.navigate('Navigator')
+    navigation.navigate('DeckDetail', {deck: {title: title, questions: []}});
   };
 
   render() {
